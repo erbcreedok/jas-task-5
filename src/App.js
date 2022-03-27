@@ -1,17 +1,16 @@
 import './App.css';
-import {useEffect, useState} from "react";
-import {fetchTopTracks} from "./fetchers/fetchTopTracks";
+import { Routes, Route } from "react-router-dom";
+import {Home} from "./pages/Home";
+import {About} from "./pages/About";
 
 function App() {
-    const [tracks, setTracks] = useState([])
-
-    useEffect(() => {
-        fetchTopTracks().then((data) => setTracks(data.tracks))
-    }, [])
 
     return (
         <div className="App">
-            {JSON.stringify(tracks)}
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+            </Routes>
         </div>
     );
 }
