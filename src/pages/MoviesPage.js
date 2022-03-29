@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import {Container} from "@mui/material";
+import {Container, Grid} from "@mui/material";
+import {MovieItem} from "../components/MovieItem";
 
 export function MoviesPage() {
     const [movies, setMovies] = useState([])
@@ -16,11 +17,13 @@ export function MoviesPage() {
     return (
         <Container maxWidth="xl">
             <h1>Movies</h1>
-            <ul>
+            <Grid container spacing={2}>
                 {movies.map((movie) => (
-                    <li>{movie.title}</li>
+                    <Grid item xs={12 / 5}>
+                        <MovieItem movie={movie} />
+                    </Grid>
                 ))}
-            </ul>
+            </Grid>
         </Container>
     )
 }
