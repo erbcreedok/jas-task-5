@@ -1,5 +1,6 @@
 import {styled} from "@mui/material";
 import {getStartsByRating} from "../utils/getStartsByRating";
+import {useNavigate} from "react-router-dom";
 
 const Box = styled('div')`
   width: 100%;
@@ -34,8 +35,9 @@ const Stars = styled('div')`
 
 
 export function MovieItem({ movie }) {
+    const navigate = useNavigate()
     return (
-        <Box imageUrl={movie.poster_path}>
+        <Box imageUrl={movie.poster_path} onClick={() => navigate('/movies/' + movie.id)}>
             <Title>{movie.title}</Title>
             <Stars>
                 {getStartsByRating(movie.vote_average)}

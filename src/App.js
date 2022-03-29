@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import {Navbar} from "./components/Navbar";
 import {MoviesPage} from "./pages/MoviesPage";
+import {MoviePage} from "./pages/MoviePage";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
 
             <Routes>
                 <Route path="/movies" element={<MoviesPage />} />
+                <Route path="/movies/:id" element={<MoviePage />} />
             </Routes>
         </div>
     );
