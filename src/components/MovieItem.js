@@ -1,5 +1,5 @@
 import {styled} from "@mui/material";
-import {getStartsByRating} from "../utils/getStartsByRating";
+import {getStarsByRating} from "../utils/getStarsByRating";
 import {useNavigate} from "react-router-dom";
 
 const Box = styled('div')`
@@ -12,6 +12,7 @@ const Box = styled('div')`
   flex-direction: column-reverse;
   padding: 24px;
   box-sizing: border-box;
+  cursor: pointer;
   &:before {
     content: '';
     display: block;
@@ -40,7 +41,7 @@ export function MovieItem({ movie }) {
         <Box imageUrl={movie.poster_path} onClick={() => navigate('/movies/' + movie.id)}>
             <Title>{movie.title}</Title>
             <Stars>
-                {getStartsByRating(movie.vote_average)}
+                {getStarsByRating(movie.vote_average)}
             </Stars>
         </Box>
     )

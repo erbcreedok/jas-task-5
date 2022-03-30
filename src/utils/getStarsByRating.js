@@ -1,4 +1,4 @@
-export function getStartsByRating(rating) {
+export function getStarsByRating(rating) {
     if (rating <= 2) {
         return '★'
     }
