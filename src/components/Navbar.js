@@ -23,6 +23,12 @@ export const Navbar = () => {
                         >
                             Movies
                         </Button>
+                        <Button
+                            onClick={() => navigate('/rickandmorty')}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Rick & Morty
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>

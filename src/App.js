@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import {Navbar} from "./components/Navbar";
 import {MoviesPage} from "./pages/MoviesPage";
 import {MoviePage} from "./pages/MoviePage";
+import {RickAndMortyPage} from "./pages/RickAndMortyPage";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Routes>
                 <Route path="/movies" element={<MoviesPage />} />
                 <Route path="/movies/:id" element={<MoviePage />} />
+                <Route path="/rickandmorty/" element={<RickAndMortyPage />} />
             </Routes>
         </div>
     );
