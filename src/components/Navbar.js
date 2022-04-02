@@ -29,6 +29,12 @@ export const Navbar = () => {
                         >
                             Rick & Morty
                         </Button>
+                        <Button
+                            onClick={() => navigate('/signin')}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Sign In
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>

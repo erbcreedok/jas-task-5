@@ -4,6 +4,7 @@ import {Navbar} from "./components/Navbar";
 import {MoviesPage} from "./pages/MoviesPage";
 import {MoviePage} from "./pages/MoviePage";
 import {RickAndMortyPage} from "./pages/RickAndMortyPage";
+import {SignInPage} from "./pages/SignInPage";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/movies" element={<MoviesPage />} />
                 <Route path="/movies/:id" element={<MoviePage />} />
                 <Route path="/rickandmorty/" element={<RickAndMortyPage />} />
+                <Route path="/signin/" element={<SignInPage />} />
             </Routes>
         </div>
     );
