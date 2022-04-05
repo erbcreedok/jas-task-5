@@ -7,6 +7,7 @@ import {RickAndMortyPage} from "./pages/RickAndMortyPage";
 import {SignInPage} from "./pages/SignInPage";
 import {Auth} from "./context/Auth";
 import {useState} from "react";
+import {Counter} from "./components/Counter";
 
 function App() {
     const [token, setToken] = useState(localStorage.getItem('idToken'))
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/movies/:id" element={<MoviePage />} />
                     <Route path="/rickandmorty/" element={<RickAndMortyPage />} />
                     <Route path="/signin/" element={<SignInPage />} />
+                    <Route path="/counter/" element={<Counter />} />
                 </Routes>
             </div>
         </Auth.Provider>
