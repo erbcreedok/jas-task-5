@@ -11,6 +11,10 @@ export class Counter extends React.Component {
 
     interval = null
 
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+
     startCountdown = () => {
         clearInterval(this.interval)
         this.setState({
