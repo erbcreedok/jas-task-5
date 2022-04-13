@@ -6,14 +6,13 @@ export function TodoForm({ onCreate }) {
     const [text, setText] = useState('')
     const handleCreate = useCallback((e) => {
         e.preventDefault()
-        setText((text) => {
-            onCreate({
-                text,
-                created: new Date(),
-            })
-            return ''
+        onCreate({
+            text,
+            created: new Date(),
+            done: false,
         })
-    }, [onCreate])
+        setText('')
+    }, [onCreate, text])
     const isDisabled = useMemo(() => {
         return text.trim().length === 0
     }, [text])
