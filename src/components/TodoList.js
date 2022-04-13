@@ -1,14 +1,15 @@
 import {TodoItem} from "./TodoItem";
-import {useCallback} from "react";
+import {useMemo} from "react";
 
-export function TodoList({ todos, onRemove }) {
-    const handleRemove = useCallback((index) => {
-        return () => onRemove(index)
-    }, [onRemove])
+export function TodoList({ todos, onTodoChange }) {
+    const sortedTodos = useMemo(() => {
+        const s = [...todos]
+        return s.sort((a, b) => a.done - b.done)
+    }, [todos])
     return (
         <ul>
-            {todos.map((todo, index) => (
-                <TodoItem key={todo.created} todo={todo} onRemove={handleRemove(index)} />
+            {sortedTodos.map((todo) => (
+                <TodoItem key={todo.created} todo={todo} onTodoChange={onTodoChange} />
             ))}
         </ul>
     )

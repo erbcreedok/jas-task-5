@@ -1,30 +1,29 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback} from 'react'
 import {TodoForm} from "../components/TodoForm";
 import {TodoList} from "../components/TodoList";
+import {useDispatch, useSelector} from "react-redux";
 
 export function TodoPage() {
-    const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || [])
+    const todos = useSelector((state) => state.todos)
+    const dispatch = useDispatch()
 
-    const handleCreate = useCallback((text) => {
-        setTodos((prev) => [...prev, text])
-    }, [])
+    const handleCreate = useCallback((todo) => {
+        dispatch({ type: 'todos/add', payload: todo })
+    }, [dispatch])
 
-    const handleRemove = useCallback((index) => {
-        setTodos((prev) => {
-            const newTodos = [...prev]
-            newTodos.splice(index, 1)
-            return newTodos
+    const handleTodoChanged = useCallback((created, value) => {
+        dispatch({
+            type: 'todos/doneChange',
+            payload: created,
+            value,
+            xxx: 'WQWEQWE'
         })
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
+    }, [dispatch])
 
     return (
         <div>
             <TodoForm onCreate={handleCreate} />
-            <TodoList todos={todos} onRemove={handleRemove} />
+            <TodoList todos={todos} onTodoChange={handleTodoChanged} />
         </div>
     )
 }
