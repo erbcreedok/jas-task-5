@@ -11,19 +11,25 @@ import {
     TextField
 } from "@mui/material";
 import {MovieItem} from "../components/MovieItem";
+import {useDispatch, useSelector} from "react-redux";
 
 export function MoviesPage() {
     const [pageInfo, setPageInfo] = useState({
         page: 1,
         total_pages: 0,
     })
-    const [movies, setMovies] = useState([])
+    const movies = useSelector((state) => state.movies)
+    const dispatch = useDispatch()
     const [query, setQuery] = useState('')
     const [sortBy, setSortBy] = useState('popularity.desc')
 
     useEffect(() => {
         searchMovies()
     }, [])
+
+    function setMovies(movies) {
+        dispatch({ type: 'movies/set', payload: movies })
+    }
 
     function searchMovies({ page = 1, sort = sortBy } = {}) {
         let method = 'discover'

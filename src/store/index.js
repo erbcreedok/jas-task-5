@@ -4,6 +4,7 @@ const initState = {
     value: 0,
     name: "Syrym",
     todos: JSON.parse(localStorage.getItem('todos')) || [],
+    movies: [],
 }
 
 const reducer = function (state = initState, action) {
@@ -31,6 +32,9 @@ const reducer = function (state = initState, action) {
                     }
                     return todo
                 })
+            break;
+        case 'movies/set':
+            newState.movies = action.payload;
             break;
         default:
             return state
