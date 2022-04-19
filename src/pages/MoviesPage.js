@@ -18,7 +18,7 @@ export function MoviesPage() {
         page: 1,
         total_pages: 0,
     })
-    const movies = useSelector((state) => state.movies)
+    const movies = useSelector((state) => state.movies.movies)
     const dispatch = useDispatch()
     const [query, setQuery] = useState('')
     const [sortBy, setSortBy] = useState('popularity.desc')
@@ -46,6 +46,8 @@ export function MoviesPage() {
                 })
             })
     }
+
+    console.log(movies)
 
     return (
         <Container maxWidth="xl">
@@ -78,7 +80,7 @@ export function MoviesPage() {
                 </div>
             </div>
             <Grid container spacing={2}>
-                {movies.map((movie) => (
+                {movies?.map((movie) => (
                     <Grid item xs={12 / 5}>
                         <MovieItem key={movie.id} movie={movie} />
                     </Grid>
