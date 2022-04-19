@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {
     Button,
     Container,
@@ -12,42 +12,29 @@ import {
 } from "@mui/material";
 import {MovieItem} from "../components/MovieItem";
 import {useDispatch, useSelector} from "react-redux";
+import {fetchMovies, SET_MOVIES_QUERY, SET_MOVIES_SORT_BY} from "../store/actions/fetchMovies";
 
 export function MoviesPage() {
-    const [pageInfo, setPageInfo] = useState({
-        page: 1,
-        total_pages: 0,
-    })
     const movies = useSelector((state) => state.movies.movies)
+    const sortBy = useSelector((state) => state.movies.sortBy)
+    const query = useSelector((state) => state.movies.query)
+    const pageInfo = useSelector((state) => state.movies.pageInfo)
     const dispatch = useDispatch()
-    const [query, setQuery] = useState('')
-    const [sortBy, setSortBy] = useState('popularity.desc')
 
     useEffect(() => {
-        searchMovies()
-    }, [])
+        dispatch(fetchMovies())
+    }, [dispatch])
 
-    function setMovies(movies) {
-        dispatch({ type: 'movies/set', payload: movies })
-    }
+    const setSortBy = useCallback((payload) => {
+        dispatch({ type: SET_MOVIES_SORT_BY, payload })
+    }, [dispatch])
+    const setQuery = useCallback((payload) => {
+        dispatch({ type: SET_MOVIES_QUERY, payload })
+    }, [dispatch])
+    const searchMovies = useCallback(({page = 1, sort = sortBy} = {}) => {
+        dispatch(fetchMovies({ page, sort, query }))
+    }, [dispatch, query, sortBy])
 
-    function searchMovies({ page = 1, sort = sortBy } = {}) {
-        let method = 'discover'
-        if (query && query.length > 0) {
-            method = 'search'
-        }
-        fetch(`https://api.themoviedb.org/3/${method}/movie?sort_by=${sort}&api_key=d65708ab6862fb68c7b1f70252b5d91c&language=ru-RU&include_adult=false&include_video=true&page=${page}&with_watch_monetization_types=flatrate&query=${query}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setMovies(data.results)
-                setPageInfo({
-                    page: data.page,
-                    total_pages: Math.min(data.total_pages, 500)
-                })
-            })
-    }
-
-    console.log(movies)
 
     return (
         <Container maxWidth="xl">
