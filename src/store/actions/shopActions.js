@@ -3,6 +3,11 @@ import axios from "axios";
 export const SET_PRODUCTS = 'shop/setProducts'
 
 export const ADD_TO_BASKET = 'shop/addToBasket'
+export const INC_BASKET = 'shop/incBasket'
+export const DEC_BASKET = 'shop/decBasket'
+
+export const OPEN_MODAL = 'shop/openModal'
+export const CLOSE_MODAL = 'shop/closeModal'
 
 export const fetchProducts = () => (dispatch) => {
     axios.get('https://fakestoreapi.com/products').then((res) => {

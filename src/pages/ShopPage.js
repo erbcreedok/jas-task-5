@@ -4,6 +4,7 @@ import {useCallback, useEffect} from "react";
 import {addToBasket, fetchProducts} from "../store/actions/shopActions";
 import {ProductBlock} from "../components/ProductBlock";
 import {Basket} from "../components/Basket";
+import {OrderFormModal} from "../components/OrderFormModal";
 
 export function ShopPage() {
     const dispatch = useDispatch()
@@ -27,6 +28,7 @@ export function ShopPage() {
                 ))}
             </Grid>
             <Basket />
+            <OrderFormModal />
         </Container>
     )
 }
